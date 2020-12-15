@@ -13,6 +13,7 @@ function App() {
   //   })
   // })
   fetch('/api/auth/test')
+  .then(result => result.json())
   .then(result => console.log(result));
   return (
     <div className="App">Hello</div>
