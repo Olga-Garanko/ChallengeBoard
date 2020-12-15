@@ -28,20 +28,21 @@ const logMiddleware = (req, res, next) => {
 };
 
 const app = express();
-app.use(express.static(__dirname + '/build'));
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/build/index.html'));
-});
+app.use(express.json());
 
 const authMiddleware = require('./server/middlewares/authMiddleware');
 
-app.use(express.json());
 app.use(logMiddleware);
 
 app.use('/api/auth', authRoutes);
 
-app.use(authMiddleware);
-app.use('/api/users', usersRoutes);
+//app.use(authMiddleware);
+app.use('/api/users', authMiddleware, usersRoutes);
+
+app.use(express.static(__dirname + '/build'));
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+});
 
 app.use((err, req, res, next) => {
   if (err && err.error && err.error.isJoi) {

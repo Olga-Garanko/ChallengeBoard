@@ -5,5 +5,5 @@ module.exports = {
   dbUserPassword: process.env.DB_USER_PASSWORD,
   dbName: process.env.DB_NAME,
   jwtSecret: process.env.JWT_SECRET,
-  port: process.env.PORT || 8080
+  port: process.env.PORT || 3000
 };
