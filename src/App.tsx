@@ -4,7 +4,7 @@ function App() {
   fetch('/api/auth/register', {
     method: 'POST',
     headers: {
-      'Content-type': 'text/json'
+      'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify({
       "email": "test@test.ua",
