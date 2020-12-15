@@ -99,8 +99,13 @@ const forgotPassword = (req, res) => {
       });
 };
 
+const test = (req, res) => {
+    res.status(200).json({message: 'test success'});
+};
+
 module.exports = {
   register,
   login,
-  forgotPassword
+  forgotPassword,
+  test
 };
