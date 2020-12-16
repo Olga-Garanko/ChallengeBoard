@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const usersRoutes = require('./server/routes/users');
 const authRoutes = require('./server/routes/auth');
+const challengesRoutes = require('./server/routes/challenges');
 const {dbUser, dbUserPassword, dbName} = require('./server/config/database');
 const {port} = require('./server/config/config');
 
@@ -36,11 +37,11 @@ app.use(logMiddleware);
 
 app.use('/api/auth', authRoutes);
 
-//app.use(authMiddleware);
 app.use('/api/users', authMiddleware, usersRoutes);
+app.use('/api/challenges', authMiddleware, challengesRoutes);
 
 app.use(express.static(__dirname + '/build'));
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
