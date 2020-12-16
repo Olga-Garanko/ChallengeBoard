@@ -24,7 +24,7 @@ function App() {
     }})
     .then(result => result.json())
     .then(result => changeResult200(result.message));
-  });
+  }, []);
   return (
     <div className="App">
       <p>Hello</p>
