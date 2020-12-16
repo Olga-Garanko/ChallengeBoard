@@ -1,7 +1,7 @@
 const challengeStates = {
   CREATED: 'created',
-  STARTED: 'created',
-  FINISHED: 'created',
+  STARTED: 'started',
+  FINISHED: 'finished',
 }
 
 module.exports = {

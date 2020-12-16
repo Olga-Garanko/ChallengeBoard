@@ -7,15 +7,17 @@ const validator = require('express-joi-validation').createValidator({
   passError: true
 });
 
-const passwordSchema = Joi.object({
-  oldPassword: Joi.string().required(),
-  newPassword: Joi.string().required()
+const bodySchema = Joi.object({
+    name: Joi.string().required(),
+    proof: Joi.boolean(),
+    milestone: Joi.number()
 });
 
 router.get('/', getChallenges);
 router.get('/:id', getChallenge);
-
 router.delete('/:id', deleteChallenge);
 router.patch('/:id/status', changeChallengeStatus);
+router.post('/', validator.body(bodySchema), addChallenge);
+router.put('/:id', validator.body(bodySchema), updateChallenge);
 
 module.exports = router;

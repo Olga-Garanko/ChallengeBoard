@@ -1,3 +1,4 @@
+const { boolean } = require('joi');
 const mongoose = require('mongoose');
 const { challengeStates } = require('../constants.js');
 
@@ -19,7 +20,14 @@ const challengeSchema = mongoose.Schema({
   },
   startDate: Date,
   finishDate: Date,
-  milestone: Number,
+  milestone: {
+    type: Number,
+    default: 30
+  },
+  proof: {
+    type: Boolean,
+    default: false
+  },
   progress: [Date],
   badges: [badgeSchema],
   created_date: {
