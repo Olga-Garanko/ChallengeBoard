@@ -1,5 +1,5 @@
 module.exports = {
   dbUser: 'dbUser',
   dbUserPassword: 'dbUserPassword',
-  dbName: 'dbLab_fe_14'
+  dbName: 'challenges_board'
 };
