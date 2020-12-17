@@ -4,7 +4,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import MainLayoutRoutes from './layouts/MainLayout/routes.js';
+import MainLayoutRoutes from './layouts/MainLayout/routes';
+import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -24,12 +25,12 @@ function App() {
           <Route path="/registration">
             <Registration />
           </Route>
-          <Route path="/challenges">
+          <PrivateRoute path="/challenges">
             <MainLayoutRoutes exact path="/challenges" component={Challenges} />
-          </Route>
-          <Route path="/edit-challenge/:id">
-            <MainLayoutRoutes path="/edit-challenge/:id" component={EditChallengeItem} />
-          </Route>
+          </PrivateRoute>
+          <PrivateRoute path="/edit-challenge/:id">
+            <MainLayoutRoutes path="/edit-challenge/:id?" component={EditChallengeItem} />
+          </PrivateRoute>
         </Switch>
     </Router>
   );
