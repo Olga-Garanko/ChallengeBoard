@@ -1,16 +1,5 @@
-import React from 'react';
 import './styles.scss';
 import cx from 'classnames'
-
-type ButtonProps = {
-    type: any,
-    className: string,
-    isActive: boolean,
-    isRadius: number,
-    disabled: boolean,
-    onClick: (isActive: boolean) => {},
-    children?: any
-}
 
 export const Button = ({
         type = 'button',
@@ -20,7 +9,7 @@ export const Button = ({
         disabled = false,
         onClick,
         children
-    }: ButtonProps) => {
+    }) => {
     return (
         <button
             type={type}
