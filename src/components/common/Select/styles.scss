@@ -1,0 +1,12 @@
+.button {
+	color: white;
+	background-color: #f58938;
+	padding: 5px 30px;
+	border-radius: 10px;
+	font-size: 20px;
+	line-height: 24px;
+	margin-bottom: 10px;
+	&_dark {
+		background-color: #1b1f3b;
+	}
+}
