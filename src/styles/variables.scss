@@ -1,0 +1,30 @@
+:root {
+    --title-font: 'Playfair Display', Arial, serif;
+    --text-font: 'Lato', Arial, sans-serif;
+}
+body {
+    --bg-color: grey;
+    --txt-color: white;
+    --tone-color: #1055cc;
+}
+body.theme-is-black {
+    --bg-color: grey;
+    --txt-color: white;
+    --tone-color: #1055cc;
+}
+
+$miniWidth : 320px;
+$phoneWidth : 768px;
+$tabletWidth : 1024px;
+$desktopWidth : 1280px;
+$fullWidth : 1400px;
+$fullMidWidth : 1680px;
+$fullHDWidth : 1900px;
+
+$mini : "max-width: " + ($miniWidth - 1);
+$phone : "max-width: " + ($phoneWidth - 1);
+$tablet : "max-width: " + ($tabletWidth - 1);
+$desktop : "max-width: " + ($desktopWidth - 1);
+$full : "max-width: " + ($fullWidth - 1);
+$fullMid : "max-width: " + ($fullMidWidth - 1);
+$fullHD : "max-width: " + ($fullHDWidth - 1);

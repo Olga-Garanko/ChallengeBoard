@@ -1,7 +1,7 @@
 import './styles.scss';
 import cx from 'classnames'
 
-export const Button = ({
+const Button = ({
         type = 'button',
         className = '',
         isActive = true,
@@ -28,3 +28,4 @@ export const Button = ({
         </button>
     );
 }
+export default Button;

@@ -1,6 +1,6 @@
-@import '../../variables.scss';
+@import '../../styles/variables.scss';
 .main {
-  background: $txtColor url(../../assets/images/appLandingPage.jpg) no-repeat center center;
+  background: var(--txt-color) url(../../assets/images/appLandingPage.jpg) no-repeat center center;
 }
 .container {
   position: relative;
@@ -11,12 +11,12 @@
   padding: 20px 20px;
   font-size: 2rem;
   font-weight: 600;
-  color: $toneColor;
+  color: var(--tone-color);
   position: absolute;
   top: 0;
   left: 0;
   text-decoration: none;
 }
 .header-logo:hover {
-  color: lighten($toneColor, 10%);
+  color: rgba(var(--tone-color), 0.2);
 }

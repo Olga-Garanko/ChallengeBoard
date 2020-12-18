@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import MainLayoutRoutes from './layouts/MainLayout/routes';
 import PublicLayoutRoutes from './layouts/PublicLayout/routes';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './routes/PrivateRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';

@@ -1,8 +1,123 @@
-@import './variables.scss';
+@import './styles/variables.scss';
+@import "./styles/mixins.scss";
+@import "./styles/reset.scss";
+
+body {
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+}
+a {
+    color: var(--txt-color, black);
+    &:hover {
+        color: var(--txt-color, black);
+    }
+}
+.wrapper {
+	max-width: $desktopWidth;
+	padding: 0 60px;
+	margin: 0 auto;
+}
+@media ($fullMid) {
+	.wrapper {
+		padding: 0 40px;
+    }
+}
+@media ($desktop) {
+	.wrapper {
+		padding: 0 30px;
+    }
+}
+@media ($tablet) {
+	.wrapper {
+		padding: 0 20px;
+    }
+}
+h1, h2, h3, h4 {
+	i {
+		color: var(--txt-color);
+	}
+}
+h1, h2 {
+	font-size: 44px;
+	font-weight: 400;
+	font-family: var(--title-font);
+	line-height: 1.3em;
+	margin: 0;
+	padding: 0 0 20px 0;
+}
+h3 {
+    font-size: 40px;
+    font-weight: 400;
+    font-family: var(--title-font);
+    line-height: 1.3em;
+    margin: 0;
+    padding: 0 0 15px 0;
+}
+@media ($desktop) {
+	h1, h2 {
+		font-size: 35px;
+		padding: 0 0 10px 0;
+	}
+    h3 {
+        font-size: 30px;
+        padding: 0 0 10px 0;
+    }
+}
+@media ($tablet) {
+    h1, h2 {
+        font-size: 25px;
+        padding: 0 0 10px 0;
+    }
+    h3 {
+        font-size: 22px;
+    }
+}
+.button {
+	background: none;
+	border: 0 none;
+	font-family: var(--text-font);
+	font-size: 20px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--txt-color);
+	position: relative;
+	cursor: pointer;
+	&:after {
+		background-color: var(--bg-color);
+		opacity: 0.3;
+		content: '';
+		position: absolute;
+		height: 13px;
+		width: 100%;
+		left: 15px;
+		top: 50%;
+	}
+}
+@media ($desktop) {
+    .button {
+            font-size: 16px;
+    }
+}
+.input {
+	border: 0 none;
+	//border-bottom: 1px solid rgba(var(--txt-color), 0.2);
+	background: none;
+	padding-bottom: 12px;
+	margin-bottom: 40px;
+	font-size: 18px;
+	font-style: italic;
+	font-family: var(--title-font);
+	//color: rgba(var(--txt-color), 0.5);
+}
+@media ($desktop) {
+    .input {
+            font-size: 16px;
+    }
+}
 body {
     font-size: 16px;
-    color: $txtColor;
-    background-color: $bgColor;
+    color: var(--txt-color);
+    background-color: var(--bg-color);
 }
 .main {
     width: 100vw;
@@ -15,10 +130,10 @@ body {
 }
 .btn {
     font-size: 1.5rem;
-    background-color: $toneColor;
+    background-color: var(--tone-color);
     border: none;
     border-radius: 5px;
-    color: $txtColor;
+    color: var(--txt-color);
     width: 150px;
     height: 50px;
     line-height: 48px;
@@ -28,5 +143,5 @@ body {
 }
 
 .btn:hover {
-    background-color: lighten($toneColor, 10%);
+    //background-color: rgba(var(--tone-color), 0.1);
 }

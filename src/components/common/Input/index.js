@@ -1,7 +1,6 @@
 import './styles.scss';
 
-const Field = () => {
-    const {
+const Input = ({
       id,
       labelText,
       type,
@@ -10,7 +9,7 @@ const Field = () => {
       value,
       onChange,
       error
-    } = props;
+    }) => {
     return (
       <div className="form-group">
         <label htmlFor={id}>{labelText}</label>
@@ -28,5 +27,5 @@ const Field = () => {
     );
   };
   
-  export default Field;
+  export default Input;
   
