@@ -1,0 +1,20 @@
+.navigation {
+  width: 100%;
+}
+.navigation__list {
+  display: block;
+  list-style-type: none;
+  padding-left: 0;
+  li {
+    margin-bottom: 10px;
+    background-color: #434343;
+  }
+}
+.nav-link {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: white;
+}
