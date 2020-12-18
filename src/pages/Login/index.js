@@ -11,8 +11,8 @@ class Login extends Component {
   
       this.state = {
         values: {
-            email: 'user1@gmail.com.ua',
-            password: 'password1',            
+            email: 'test10@test.ua',
+            password: '123',            
         },
         errors: {
           email: false,
@@ -51,8 +51,11 @@ class Login extends Component {
     };
     
     validateFields = () => {
-        const errors = {};  
-        if (this.state.password === "") {
+        const errors = {};
+        if (this.state.values.email === "") {
+          errors.email = "Not empty";
+        } 
+        if (this.state.values.password === "") {
           errors.password = "Not empty";
         }  
         return errors;
@@ -62,10 +65,10 @@ class Login extends Component {
         this.setState({
           submitting: true
         });
-        fetchApi(`${baseUrl}/api/auth/login`, {
+        fetchApi(`/api/auth/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify({
                 email: this.state.values.email,
@@ -112,7 +115,7 @@ class Login extends Component {
     };
   
     render() {
-        const { email, password, errors, submitting } = this.state;
+        const { values: {email, password}, errors, submitting } = this.state;
         return (
           <div className="form-login-container">
               <h1 className="h3 mb-3 font-weight-normal text-center">
@@ -130,8 +133,8 @@ class Login extends Component {
                   onChange={this.onChange}
                   onBlur={this.handleBlur}
                 />
-                {errors.username && (
-                  <div className="invalid-feedback">{errors.username}</div>
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email}</div>
                 )}
               </div>
               <div className="form-group">
