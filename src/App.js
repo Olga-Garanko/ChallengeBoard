@@ -26,9 +26,9 @@ function App() {
           <Route path="/registration">
             <PublicLayoutRoutes exact path="/registration" component={Registration} />
           </Route>
-          <PrivateRoute path="/challenges">
+          <Route path="/challenges">
             <MainLayoutRoutes exact path="/challenges" component={Challenges} />
-          </PrivateRoute>
+          </Route>
           <PrivateRoute path="/edit-challenge/:id">
             <MainLayoutRoutes path="/edit-challenge/:id?" component={EditChallengeItem} />
           </PrivateRoute>
