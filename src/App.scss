@@ -1,0 +1,32 @@
+@import './variables.scss';
+body {
+    font-size: 16px;
+    color: $txtColor;
+    background-color: $bgColor;
+}
+.main {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;   
+}
+.container {
+    max-width: 1280;
+    margin: 0 auto;    
+}
+.btn {
+    font-size: 1.5rem;
+    background-color: $toneColor;
+    border: none;
+    border-radius: 5px;
+    color: $txtColor;
+    width: 150px;
+    height: 50px;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: lighten($toneColor, 10%);
+}
