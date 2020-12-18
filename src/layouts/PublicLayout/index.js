@@ -5,14 +5,16 @@ import {
 
 const PublicLayout = ({children}) => {
     return (
+      <div className="public-layout">
         <main className="main">
-			<div className="container">
-				<header className="header">
-					<Link to='/' className="header-logo">HabitOn</Link>
-				</header>
-                {children}
-			</div>			
-		</main>
+          <header className="header">
+            <Link to='/' className="logo">HabitOn</Link>
+          </header>
+          <div className="content">
+            {children}
+          </div>
+        </main>        
+      </div>
     )
 }
 

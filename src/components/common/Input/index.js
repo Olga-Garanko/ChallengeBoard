@@ -4,6 +4,7 @@ const Input = ({
       id,
       labelText,
       type,
+      className,
       placeholder,
       name,
       value,
@@ -12,11 +13,11 @@ const Input = ({
     }) => {
     return (
       <div className="form-group">
-        <label htmlFor={id}>{labelText}</label>
+        <label htmlFor={id} className="input__label">{labelText}</label>
         <input
           id={id}
           type={type}
-          className="form-control"
+          className={className}
           placeholder={placeholder}
           name={name}
           value={value}

@@ -1,22 +1,32 @@
 @import '../../styles/variables.scss';
-.main {
-  background: var(--txt-color) url(../../assets/images/appLandingPage.jpg) no-repeat center center;
-}
-.container {
-  position: relative;
-}
-.header-logo {
-  display: block;
-  margin-left: 5%;
-  padding: 20px 20px;
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--tone-color);
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-decoration: none;
-}
-.header-logo:hover {
-  color: rgba(var(--tone-color), 0.2);
+.public-layout {
+  .main {
+    background: var(--txt-color) url(../../assets/images/appLandingPage.jpg) no-repeat center center;
+    position: relative;
+  }
+  .header {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1280px;
+    width: 100%;
+  }
+  .logo {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--tone-color);  
+    &:hover {
+      color: rgba(var(--tone-color-rgb), 0.8);
+    }
+  }
+  .content > div {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+  }  
 }

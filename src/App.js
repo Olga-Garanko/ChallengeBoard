@@ -13,7 +13,7 @@ import Registration from './pages/Registration';
 import Challenges from './pages/Challenges';
 import EditChallengeItem from './pages/EditChallengeItem'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Switch>

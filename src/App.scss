@@ -7,9 +7,9 @@ body {
     color: var(--txt-color);
 }
 a {
-    color: var(--txt-color, black);
+    color: var(--txt-color, white);
     &:hover {
-        color: var(--txt-color, black);
+        color: var(--txt-color, white);
     }
 }
 .wrapper {
@@ -72,27 +72,6 @@ h3 {
         font-size: 22px;
     }
 }
-.button {
-	background: none;
-	border: 0 none;
-	font-family: var(--text-font);
-	font-size: 20px;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--txt-color);
-	position: relative;
-	cursor: pointer;
-	&:after {
-		background-color: var(--bg-color);
-		opacity: 0.3;
-		content: '';
-		position: absolute;
-		height: 13px;
-		width: 100%;
-		left: 15px;
-		top: 50%;
-	}
-}
 @media ($desktop) {
     .button {
             font-size: 16px;
@@ -100,14 +79,17 @@ h3 {
 }
 .input {
 	border: 0 none;
-	//border-bottom: 1px solid rgba(var(--txt-color), 0.2);
+	border-bottom: 1px solid rgba(var(--tone-color-rgb), 0.2);
 	background: none;
 	padding-bottom: 12px;
 	margin-bottom: 40px;
 	font-size: 18px;
 	font-style: italic;
 	font-family: var(--title-font);
-	//color: rgba(var(--txt-color), 0.5);
+    color: rgba(var(--bg-color-rgb), 0.5);
+    &__label {
+        padding-right: 20px;
+    }
 }
 @media ($desktop) {
     .input {
@@ -140,8 +122,7 @@ body {
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-}
-
-.btn:hover {
-    //background-color: rgba(var(--tone-color), 0.1);
+    &:hover {
+        background-color: rgba(var(--tone-color-rgb), 0.8);
+    }
 }

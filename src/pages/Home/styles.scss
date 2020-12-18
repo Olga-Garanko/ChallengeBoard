@@ -1,29 +1,20 @@
 @import '../../styles/variables.scss';
-.main {
+.home {
     background-image: url(../../assets/images/appLandingPage.jpg);
+    &__title {
+        margin: 0 auto;
+        padding-top: 20px;
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    &__text {
+        font-size: 1.5rem;
+    }
+    &__links {
+        display: flex;
+        justify-content: space-around;
+        margin: 0 auto;
+        max-width: 600px;
+    }
 }
-
-
-.general-info {
-    margin: 0 auto;
-    padding: 0 10px;
-    width: 600px;
-    // background-color: rgba(31, 31, 31, 0.185);
-}
-
-.motivational-phrase {
-    margin: 0 auto;
-    padding-top: 20px;
-    font-size: 3rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-.invitation {
-    font-size: 1.5rem;
-}
-.nav-links {
-    display: flex;
-    justify-content: space-around;
-}
-

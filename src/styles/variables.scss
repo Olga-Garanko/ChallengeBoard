@@ -3,13 +3,16 @@
     --text-font: 'Lato', Arial, sans-serif;
 }
 body {
-    --bg-color: grey;
+    --bg-color: #434343;
+    --bg-color-rgb: 67,67,67;
     --txt-color: white;
+    --txt-color-rgb: 255,255,255;
     --tone-color: #1055cc;
+    --tone-color-rgb: 16,85,204;
 }
 body.theme-is-black {
-    --bg-color: grey;
-    --txt-color: white;
+    --bg-color: white;
+    --txt-color: 434343;
     --tone-color: #1055cc;
 }
 
