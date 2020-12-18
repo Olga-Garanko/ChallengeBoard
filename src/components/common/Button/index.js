@@ -14,7 +14,7 @@ export const Button = ({
         <button
             type={type}
             className={cx(
-                'button',
+                'btn',
                 { 'button_active': isActive },
                 { [`button_radius-${isRadius}`]: isRadius },
                 className

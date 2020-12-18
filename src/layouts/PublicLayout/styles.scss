@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+.main {
+  background: $txtColor url(../../assets/images/appLandingPage.jpg) no-repeat center center;
+}
+.container {
+  position: relative;
+}
+.header-logo {
+  display: block;
+  margin-left: 5%;
+  padding: 20px 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: $toneColor;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+}
+.header-logo:hover {
+  color: lighten($toneColor, 10%);
+}
