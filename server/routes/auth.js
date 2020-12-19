@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {register, login, forgotPassword, test} = require('../controllers/authController');
+const {register, login, forgotPassword} = require('../controllers/authController');
 const router = Router();
 
 const Joi = require('joi');
@@ -18,7 +18,6 @@ const registerSchema = Joi.object({
   password: Joi.string().required()
 });
 
-router.get('/test', test);
 router.post('/login', validator.body(loginSchema), login);
 router.post('/register', validator.body(registerSchema), register);
 router.post('/forgot_password', validator.body(loginSchema), forgotPassword);

@@ -1,192 +1,166 @@
 import './styles.scss';
-import { Component } from 'react';
+import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import { baseUrl, fetchApi } from "../../utils/api";
 
-class Registration extends Component {
-
-    constructor() {
-      super();
+const Registration = () => {
+  const history = useHistory();
+  const [values, setValues] = useState({username: '', email: '', password: ''});
+  const [errors, setErrors] = useState({username: false, email: false, password: false});
+  const [submitting, setSubmitting] = useState(false);
+  const [response, setResponse] = useState('');
   
-      this.state = {
-        values: {
-          username: "",
-          email: '',
-          password: '',            
-        },
-        errors: {
-          username: false,
-          email: false,
-          password: false
-        },
-        submitting: false
-      };
-    };
-  
-    onChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        this.setState(prevState => ({
-            values: {
-                ...prevState.values,
-                [name]: value
-            },
-            errors: {
-                ...prevState.errors,
-                [name]: null
-            }
-        }));
-    };
-
-    handleBlur = (event) => {
-        const name = event.target.name;
-        const errors = this.validateFields();
-        if (errors[name]) {
-          this.setState(prevState => ({
-            errors: {
-              ...prevState.errors,
-              [name]: errors[name]
-            }
-          }));
-        }
-    };
-    
-    validateFields = () => {
-        const errors = {};
-        if (this.state.values.username === "") {
-          errors.username = "Not empty";
-        }
-        if (this.state.values.email === "") {
-          errors.email = "Not empty";
-        } 
-        if (this.state.values.password === "") {
-          errors.password = "Not empty";
-        }  
-        return errors;
-    };
-
-    onSubmit = () => {
-        this.setState({
-          submitting: true
-        });
-        fetchApi(`${baseUrl}/api/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify({
-                email: this.state.values.email,
-                password: this.state.values.password
-            })
-        })
-        .then(data => data.json())
-        .then(data => console.log(data))
-        .catch(data => console.log(data))
-        //   .then(data => {
-        //     return fetchApi("/api/auth", {
-
-        //     });
-        //   })
-        //   .then(user => {
-        //     console.log('user', user);
-        //     this.setState({
-        //       submitting: false
-        //     });
-        //   })
-        //   .catch(error => {
-        //     console.log("error", error);
-        //     this.setState({
-        //       submitting: false,
-        //       errors: {
-        //         base: error.status_message
-        //       }
-        //     });
-        //   });
-    };
-    
-    onLogin = () => {
-        const errors = this.validateFields();
-        if (Object.keys(errors).length > 0) {
-          this.setState(prevState => ({
-            errors: {
-              ...prevState.errors,
-              ...errors
-            }
-          }));
-        } else {
-          this.onSubmit();
-        }
-    };
-  
-    render() {
-        const { values: {username, email, password}, errors, submitting } = this.state;
-        return (
-          <div className="registration">
-            <div className="wrapper">
-              <h1>Registration</h1>
-              <div className="form-group">
-                <Input
-                  type="text"
-                  className="input"
-                  labelText="Username"
-                  id="username"
-                  placeholder="Username"
-                  name="username"
-                  value={username}
-                  onChange={this.onChange}
-                  onBlur={this.handleBlur}
-                />
-                {errors.username && (
-                  <div className="invalid-feedback">{errors.username}</div>
-                )}
-              </div>
-              <div className="form-group">
-                <Input
-                  type="text"
-                  className="input"
-                  labelText="Email"
-                  id="email"
-                  placeholder="Email"
-                  name="email"
-                  value={email}
-                  onChange={this.onChange}
-                  onBlur={this.handleBlur}
-                />
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-              </div>
-              <div className="form-group">
-                <Input
-                  type="password"
-                  className="input"
-                  labelText="Пароль"
-                  id="password"
-                  placeholder="Пароль"
-                  name="password"
-                  value={password}
-                  onChange={this.onChange}
-                  onBlur={this.handleBlur}
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-              </div>
-              <Button
-                type="button"
-                className="btn"
-                onClick={this.onLogin}
-                disabled={submitting}
-              >
-                Вход
-              </Button>
-              {errors.base && (
-                <div className="invalid-feedback text-center">{errors.base}</div>
-              )}              
-            </div>
-          </div>
-        );
+  const onChange = (event) => {
+      console.log(values, errors)
+      const name = event.target.name;
+      const value = event.target.value;
+      setValues({...values, [name]: value});
+      setErrors({...errors, [name]: null});
+  };
+  const validateFields = () => {
+    const errors = {};
+    if (values.username === "") {
+      errors.username = "Not empty";
+    } 
+    if (values.email === "") {
+      errors.email = "Not empty";
+    } 
+    if (values.password === "") {
+      errors.password = "Not empty";
+    }  
+    return errors;
+  };
+  const handleBlur = (event) => {
+      const name = event.target.name;
+      const errors = validateFields();
+      if (errors[name]) {
+        setErrors({...errors, [name]: errors[name]});
       }
+  };
+  
+  const onSubmit = () => {
+    console.log('onSubmit')
+    setSubmitting(true);
+    fetchApi(`${baseUrl}/api/auth/register`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+          username: values.username,
+          email: values.email,
+          password: values.password
+      })
+    })
+    .then(() => {
+      return fetchApi(`${baseUrl}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            email: values.email,
+            password: values.password
+        })
+      })
+    })
+    .then(data => {
+        localStorage.setItem('jwt', data.jwt_token);
+        return fetchApi(`${baseUrl}/api/users/me`, {
+          headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              'Authorization': `Bearer ${data.jwt_token}`
+          }
+        })
+    })
+    .then(user => {
+      localStorage.setItem('username', user);
+      history.push('/challenges')  
+    })
+    .catch(err => {
+      setResponse(err.message);
+    })
+    .finally(() => setSubmitting(false))
+  };
+  
+  const onLogin = () => {
+      setResponse('');
+      const newErrors = validateFields();
+      if (Object.keys(newErrors).length > 0) {
+        setErrors({...errors, ...newErrors});
+      } else {
+        onSubmit();
+      }
+  };
+  
+  const { username, email, password} = values;
+    return (
+      <div className="login">
+        <div className="wrapper">
+          <h1>Registration</h1>
+          {response && 
+            <div class="response">{response}</div>
+          }
+          <div className="form-group">
+            <Input
+              type="text"
+              className="input"
+              labelText="Username"
+              id="username"
+              placeholder="Username"
+              name="username"
+              value={username}
+              onChange={onChange}
+              onBlur={handleBlur}
+            />
+            {errors.username && (
+              <div className="invalid-feedback">{errors.username}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <Input
+              type="text"
+              className="input"
+              labelText="Email"
+              id="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              onBlur={handleBlur}
+            />
+            {errors.email && (
+              <div className="invalid-feedback">{errors.email}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <Input
+              type="password"
+              className="input"
+              labelText="Пароль"
+              id="password"
+              placeholder="Пароль"
+              name="password"
+              value={password}
+              onChange={onChange}
+              onBlur={handleBlur}
+            />
+            {errors.password && (
+              <div className="invalid-feedback">{errors.password}</div>
+            )}
+          </div>
+          <Button
+            type="button"
+            className="btn"
+            onClick={onLogin}
+            disabled={submitting}
+          >
+            Вход
+          </Button>             
+        </div>
+      </div>
+    );
   }
 export default Registration;

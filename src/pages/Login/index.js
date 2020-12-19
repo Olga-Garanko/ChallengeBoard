@@ -1,9 +1,9 @@
 import './styles.scss';
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import { baseUrl, fetchApi } from "../../utils/api";
-import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const history = useHistory();

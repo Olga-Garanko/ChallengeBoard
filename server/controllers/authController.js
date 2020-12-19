@@ -18,8 +18,7 @@ const register = async (req, res) => {
             const userModel = new User({
               username,
               email,
-              password: pass,
-              role
+              password: pass
             });
             await userModel.save();
             res.status(201).json({message: 'Profile created successfully'});
@@ -100,13 +99,8 @@ const forgotPassword = (req, res) => {
       });
 };
 
-const test = (req, res) => {
-    res.status(200).json({message: 'test success'});
-};
-
 module.exports = {
   register,
   login,
-  forgotPassword,
-  test
+  forgotPassword
 };
