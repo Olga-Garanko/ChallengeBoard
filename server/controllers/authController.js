@@ -6,7 +6,7 @@ const saltRounds = 10;
 const nodemailer = require('nodemailer');
 
 const register = async (req, res) => {
-  const {email, password, role} = req.body;
+  const {username, email, password} = req.body;
   try {
     const user = await User.findOne({email});
     if (user) {
@@ -16,6 +16,7 @@ const register = async (req, res) => {
       bcrypt.hash(password, saltRounds)
           .then(async (pass) => {
             const userModel = new User({
+              username,
               email,
               password: pass,
               role
