@@ -10,6 +10,7 @@ const Login = () => {
   const [values, setValues] = useState({email: 'test10@test.ua', password: '123'});
   const [errors, setErrors] = useState({email: false, password: false});
   const [submitting, setSubmitting] = useState(false);
+  const [response, setResponse] = useState('');
   
   const onChange = (event) => {
       console.log(values, errors)
@@ -17,7 +18,6 @@ const Login = () => {
       const value = event.target.value;
       setValues({...values, [name]: value});
       setErrors({...errors, [name]: null});
-      console.log('onChange', values, errors)
   };
   const validateFields = () => {
     const errors = {};
@@ -35,7 +35,6 @@ const Login = () => {
       if (errors[name]) {
         setErrors({...errors, [name]: errors[name]});
       }
-      console.log('handleBlur', values, errors)
   };
   
   const onSubmit = () => {
@@ -64,17 +63,18 @@ const Login = () => {
       localStorage.setItem('username', user);
       history.push('/challenges')  
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      setResponse(err.message);
+    })
     .finally(() => setSubmitting(false))
   };
   
   const onLogin = () => {
+      setResponse('');
       const newErrors = validateFields();
       if (Object.keys(newErrors).length > 0) {
         setErrors({...errors, ...newErrors});
-        console.log('onLogin', values, errors)
       } else {
-        console.log('onLogin', 'values', values, 'errors', errors)
         onSubmit();
       }
   };
@@ -84,6 +84,9 @@ const Login = () => {
       <div className="login">
         <div className="wrapper">
           <h1>Login</h1>
+          {response && 
+            <div class="response">{response}</div>
+          }
           <div className="form-group">
             <Input
               type="text"
