@@ -1,0 +1,31 @@
+.challenge {
+  margin-bottom: 20px;
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #434343;
+    padding: 20px;
+    font-size: 1.3rem;
+    &__description {
+      width: 400px;
+    }
+    &__btn {
+      width: 100px;
+      height: 30px;
+      border-style: none;
+      border-radius: 5px;
+      background-color: #477eff;
+      color: #fff;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #5e8fff;
+      }
+    }
+  }
+  &__details {
+    background-color: #696969;
+    font-size: 1.3rem;
+    padding: 20px;
+  }
+}
