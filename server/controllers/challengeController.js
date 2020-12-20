@@ -2,8 +2,15 @@ const Challenge = require('../models/challenge');
 const { challengeStates } = require('../constants.js');
 
 const getChallenges = async (req, res) => {
-    const challenges = await Challenge.find({userId: req.user._id});
-    res.status(200).json({challenges});
+  let challenges;
+  if (req.query.status === 'archived') {
+    challenges = await Challenge.find({userId: req.user._id, archived: true}).sort({created_date: 1});
+  } else if (!req.query.status) {
+    challenges = await Challenge.find({userId: req.user._id});
+  } else {
+    challenges = await Challenge.find({userId: req.user._id, status: req.query.status.toLowerCase(), archived: false}).sort({created_date: -1});
+  }
+  res.status(200).json({challenges});
 };
 
 const getChallenge = async (req, res) => {
@@ -24,6 +31,15 @@ const addChallenge = async (req, res) => {
 const deleteChallenge = async (req, res) => {
     await Challenge.findByIdAndDelete(req.user._id);
     res.status(200).json({message: 'Challenge deleted successfully'});
+};
+
+const proofChallenge = async (req, res) => {
+    const challenge = await Challenge.findById(req.params.id);
+    if (!challenge) {
+      return res.status(400).json({message: 'There is no such challenge'});
+    }
+    await Challenge.findByIdAndUpdate(req.params.id, {$set: {proofDate: new Date()}});
+    res.status(200).json({message: 'Challenge changed successfully'});
 };
 
 const updateChallenge = async (req, res) => {
@@ -52,7 +68,7 @@ const changeChallengeStatus = async (req, res) => {
         default:
             status = challengeStates.STARTED 
     }
-    await Truck.findByIdAndUpdate(req.params.id, {'$set': {status}});
+    await Challenge.findByIdAndUpdate(req.params.id, {'$set': {status}});
     res.status(200).json({message: 'Challenge posted successfully'});
   };
 
@@ -62,5 +78,6 @@ module.exports = {
   addChallenge,
   deleteChallenge,
   updateChallenge,
-  changeChallengeStatus
+  changeChallengeStatus,
+  proofChallenge
 };

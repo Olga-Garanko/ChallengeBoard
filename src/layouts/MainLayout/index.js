@@ -2,13 +2,14 @@ import './styles.scss';
 import UserInfo from '../../components/UserInfo';
 import Navbar from '../../components/Navbar';
 import Header from '../../components/Header';
+import {Link} from "react-router-dom";
 
 const MainLayout = ({ children }) => {
   return (
     <div className='main-layout'>
       <div className='wrapper'>
         <aside className='aside'>
-          <div className="logo">ChallengeOn</div>
+          <Link to="/" className="logo">ChallengeOn</Link>
           <UserInfo />
           <Navbar />
         </aside>

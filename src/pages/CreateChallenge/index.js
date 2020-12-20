@@ -74,54 +74,55 @@ const onLogin = () => {
 
 const { title, goal } = values;
     return (
-    <div className="login">
-        <div className="wrapper">
+    <>
         <h1>Create Challenge</h1>
-        {response && 
-            <div class="response">{response}</div>
-        }
-        <div className="form-group">
-            <Input
-            type="text"
-            className="input"
-            labelText="Title"
-            id="title"
-            placeholder="Title"
-            name="title"
-            value={title}
-            onChange={onChange}
-            onBlur={handleBlur}
-            />
-            {errors.title && (
-            <div className="invalid-feedback">{errors.title}</div>
-            )}
-        </div>
-        <div className="form-group">
-            <Input
-            type="number"
-            className="input"
-            labelText="Goal (days)"
-            id="goal"
-            placeholder="Goal (days)"
-            name="goal"
-            value={goal}
-            onChange={onChange}
-            onBlur={handleBlur}
-            />
-            {errors.goal && (
-            <div className="invalid-feedback">{errors.goal}</div>
-            )}
-        </div>
-        <Button
-            type="button"
-            className="btn"
-            onClick={onLogin}
-            disabled={submitting}
-        >
-            Submit
-        </Button>             
-        </div>
-    </div>
+        <div className="form">
+            {response && 
+                <div class="response">{response}</div>
+            }
+            <div className="form-group">
+                <Input
+                type="text"
+                className="input"
+                labelText="Title"
+                id="title"
+                placeholder="Title"
+                name="title"
+                value={title}
+                onChange={onChange}
+                onBlur={handleBlur}
+                />
+                {errors.title && (
+                <div className="invalid-feedback">{errors.title}</div>
+                )}
+            </div>
+            <div className="form-group">
+                <Input
+                type="number"
+                className="input"
+                labelText="Goal (days)"
+                id="goal"
+                placeholder="Goal (days)"
+                name="goal"
+                value={goal}
+                onChange={onChange}
+                onBlur={handleBlur}
+                />
+                {errors.goal && (
+                <div className="invalid-feedback">{errors.goal}</div>
+                )}
+            </div>
+            <Button
+                type="button"
+                className="btn"
+                onClick={onLogin}
+                disabled={submitting}
+            >
+                Submit
+            </Button>             
+            </div>         
+        </>
+
     );
 }
 export default CreateChallenge;

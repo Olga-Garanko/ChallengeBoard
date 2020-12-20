@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 const DashboardNav = () => {
   const history = useHistory();
   const onLogout = () => {
-    localStorage.removeItem('user');
     localStorage.removeItem('jwt');
     history.push('/');
   };

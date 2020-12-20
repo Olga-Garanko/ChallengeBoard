@@ -23,7 +23,7 @@ const challengeSchema = mongoose.Schema({
     default: Date.now()
   },
   finishDate: Date,
-  lastCheckDate: Date,
+  proofDate: Date,
   goal: {
     type: Number,
     default: 30
