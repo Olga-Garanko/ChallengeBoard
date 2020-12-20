@@ -14,10 +14,10 @@ const DashboardNav = () => {
   return (
     <nav className='nav'>
       <NavLink to='/challenges' className='nav__link' activeClassName='nav__link_active'>
-        My habits
+        My challenges
       </NavLink>
       <NavLink to='/create-challenge' className='nav__link' activeClassName='nav__link_active'>
-        Add new habit
+        Add new challenge
       </NavLink>
       <NavLink to='/progress' className='nav__link' activeClassName='nav__link_active'>
         My progress

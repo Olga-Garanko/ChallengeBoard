@@ -8,9 +8,8 @@ const validator = require('express-joi-validation').createValidator({
 });
 
 const bodySchema = Joi.object({
-    name: Joi.string().required(),
-    proof: Joi.boolean(),
-    milestone: Joi.number()
+    title: Joi.string().required(),
+    goal: Joi.number().required()
 });
 
 router.get('/', getChallenges);

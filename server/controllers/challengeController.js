@@ -15,11 +15,11 @@ const getChallenge = async (req, res) => {
 };
 
 const addChallenge = async (req, res) => {
-    const {name, proof, milestone} = req.body;
-    const challengeModel = new Truck({name, proof, milestone, userId: req.user._id});
+    const {title, goal} = req.body;
+    const challengeModel = new Challenge({title, goal, userId: req.user._id});
     await challengeModel.save();
     res.status(201).json({message: 'Challenge created successfully'});
-  };
+};
 
 const deleteChallenge = async (req, res) => {
     await Challenge.findByIdAndDelete(req.user._id);

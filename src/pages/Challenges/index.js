@@ -3,25 +3,25 @@ import './styles.scss';
 
 const testData = [
   {
-    id: '1',
+    _id: '1',
     name: 'Drink water',
     startDate: new Date(2020, 11, 12),
     goal: 5
   },
   {
-    id: '2',
+    _id: '2',
     name: 'Walk with a dog',
     startDate: null,
     goal: 16
   },
   {
-    id: '3',
+    _id: '3',
     name: 'Run 5 kilometers everyday',
     startDate: null,
     goal: 24
   },
   {
-    id: '4',
+    _id: '4',
     name: 'Do something else',
     startDate: null,
     goal: 2

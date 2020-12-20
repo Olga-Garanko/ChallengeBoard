@@ -12,19 +12,27 @@ const badgeSchema = mongoose.Schema({
 });
 
 const challengeSchema = mongoose.Schema({
-  name: String,  
+  title: String,  
   userId: mongoose.Types.ObjectId,
   status: {
     type: String,
     default: challengeStates.CREATED
   },
-  startDate: Date,
+  startDate: {
+    type: Date,
+    default: Date.now()
+  },
   finishDate: Date,
-  milestone: {
+  lastCheckDate: Date,
+  goal: {
     type: Number,
     default: 30
   },
   proof: {
+    type: Boolean,
+    default: false
+  },
+  archived: {
     type: Boolean,
     default: false
   },
