@@ -8,7 +8,7 @@ const PublicLayout = ({children}) => {
       <div className="public-layout">
         <main className="main">
           <header className="header">
-            <Link to='/' className="logo">HabitOn</Link>
+            <Link to='/' className="logo">ChallengeOn</Link>
           </header>
           <div className="content">
             {children}

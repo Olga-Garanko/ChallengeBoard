@@ -27,9 +27,16 @@ const testData = [
 function Challenges() {
   const challenges = testData.map((challenge) => {
     return (
-      <ChallengeItem key={challenge.description} description={challenge.description} date={challenge.date} goal={challenge.goal}></ChallengeItem>
+      <ChallengeItem key={challenge._id} challenge={challenge} />
     );
   });
-  return <div className='challenges'>{challenges}</div>;
+  return (
+    <>
+    <h1>Challenges</h1>
+    <div className='challenges'>
+      {challenges}
+    </div>
+    </>
+  );
 }
 export default Challenges;

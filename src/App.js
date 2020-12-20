@@ -7,6 +7,7 @@ import {
 import MainLayoutRoutes from './layouts/MainLayout/routes';
 import PublicLayoutRoutes from './layouts/PublicLayout/routes';
 import PrivateRoute from './routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -29,7 +30,7 @@ const App = () => {
           <Route path="/challenges">
             <MainLayoutRoutes exact path="/challenges" component={Challenges} />
           </Route>
-          <PrivateRoute path="/edit-challenge/:id">
+          <PrivateRoute path="/edit-challenge/:id?">
             <MainLayoutRoutes path="/edit-challenge/:id?" component={EditChallengeItem} />
           </PrivateRoute>
         </Switch>

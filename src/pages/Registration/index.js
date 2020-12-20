@@ -13,7 +13,6 @@ const Registration = () => {
   const [response, setResponse] = useState('');
   
   const onChange = (event) => {
-      console.log(values, errors)
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values, [name]: value});
@@ -26,10 +25,17 @@ const Registration = () => {
     } 
     if (values.email === "") {
       errors.email = "Not empty";
-    } 
+    }
+    const emailRegExp = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i;
+    if (!emailRegExp.test(values.email)) {
+      errors.email = 'Must be symbol @ and 2 symbol after dot';
+    }
     if (values.password === "") {
       errors.password = "Not empty";
-    }  
+    }
+    if (values.password.length < 8) {
+      errors.password = "At least 8 symbols";
+    } 
     return errors;
   };
   const handleBlur = (event) => {
@@ -76,7 +82,7 @@ const Registration = () => {
         })
     })
     .then(user => {
-      localStorage.setItem('username', user);
+      localStorage.setItem('user', user);
       history.push('/challenges')  
     })
     .catch(err => {
@@ -139,9 +145,9 @@ const Registration = () => {
             <Input
               type="password"
               className="input"
-              labelText="Пароль"
+              labelText="Password"
               id="password"
-              placeholder="Пароль"
+              placeholder="Password"
               name="password"
               value={password}
               onChange={onChange}
@@ -157,7 +163,7 @@ const Registration = () => {
             onClick={onLogin}
             disabled={submitting}
           >
-            Вход
+            Submit
           </Button>             
         </div>
       </div>

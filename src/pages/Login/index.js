@@ -7,13 +7,12 @@ import { baseUrl, fetchApi } from "../../utils/api";
 
 const Login = () => {
   const history = useHistory();
-  const [values, setValues] = useState({email: 'test10@test.ua', password: '123'});
+  const [values, setValues] = useState({email: 'user@test.ua', password: 'test1234'});
   const [errors, setErrors] = useState({email: false, password: false});
   const [submitting, setSubmitting] = useState(false);
   const [response, setResponse] = useState('');
   
   const onChange = (event) => {
-      console.log(values, errors)
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values, [name]: value});
@@ -21,14 +20,25 @@ const Login = () => {
   };
   const validateFields = () => {
     const errors = {};
+    if (values.username === "") {
+      errors.username = "Not empty";
+    } 
     if (values.email === "") {
       errors.email = "Not empty";
-    } 
+    }
+    const emailRegExp = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i;
+    if (!emailRegExp.test(values.email)) {
+      errors.email = 'Must be symbol @ and 2 symbol after dot';
+    }
     if (values.password === "") {
       errors.password = "Not empty";
-    }  
+    }
+    if (values.password.length < 8) {
+      errors.password = "At least 8 symbols";
+    } 
     return errors;
   };
+
   const handleBlur = (event) => {
       const name = event.target.name;
       const errors = validateFields();
@@ -50,18 +60,9 @@ const Login = () => {
           password: values.password
       })
     })
-    .then(data => {
-        localStorage.setItem('jwt', data.jwt_token);
-        return fetchApi(`${baseUrl}/api/users/me`, {
-          headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              'Authorization': `Bearer ${data.jwt_token}`
-          }
-        })
-    })
-    .then(user => {
-      localStorage.setItem('username', user);
-      history.push('/challenges')  
+    .then(async data => {
+        await localStorage.setItem('jwt', data.jwt_token);
+        history.push('/challenges')
     })
     .catch(err => {
       setResponse(err.message);
@@ -107,9 +108,9 @@ const Login = () => {
             <Input
               type="password"
               className="input"
-              labelText="Пароль"
+              labelText="Password"
               id="password"
-              placeholder="Пароль"
+              placeholder="Password"
               name="password"
               value={password}
               onChange={onChange}
@@ -125,7 +126,7 @@ const Login = () => {
             onClick={onLogin}
             disabled={submitting}
           >
-            Вход
+            Submit
           </Button>             
         </div>
       </div>

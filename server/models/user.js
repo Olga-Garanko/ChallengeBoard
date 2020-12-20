@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
   lastName: String,
   phone: String,
   birthday: String,
-  role: String,
+  avatar: String,
   created_date: {
     type: Date,
     default: new Date()

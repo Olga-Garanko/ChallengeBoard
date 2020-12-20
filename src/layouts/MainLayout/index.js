@@ -8,6 +8,7 @@ const MainLayout = ({ children }) => {
     <div className='main-layout'>
       <div className='wrapper'>
         <aside className='aside'>
+          <div className="logo">ChallengeOn</div>
           <UserInfo />
           <Navbar />
         </aside>

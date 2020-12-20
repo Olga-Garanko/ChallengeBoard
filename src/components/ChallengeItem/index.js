@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './styles.scss';
 
-const ChallengeItem = (props) => {
+const ChallengeItem = ({ challenge: { description, date, goal }}) => {
   const [open, setOpen] = useState(false);
 
-  const showChallenge = () => {
+  const toggleChallenge = () => {
     setOpen(!open);
   };
-  const hideChallenge = () => {
-    setOpen(!open);
-  };
-  const {description, date, goal} = props;
 
   if (!open) {
     return (
       <div className='challenge'>
         <div className='challenge__item'>
           <div className='challenge__item__description'>{description} - {goal} days</div>
-          <button onClick={showChallenge} className="challenge__item__btn">Show details</button>
+          <button onClick={toggleChallenge} className="challenge__item__btn">Show details</button>
         </div>
       </div>
     );
@@ -26,7 +22,7 @@ const ChallengeItem = (props) => {
       <div className='challenge'>
         <div className='challenge__item'>
           <div className='challenge__item__description'>{description} - {goal} days</div>
-          <button onClick={hideChallenge} className="challenge__item__btn">Hide details</button>
+          <button onClick={toggleChallenge} className="challenge__item__btn">Hide details</button>
         </div>
         <div className="challenge__details">
           <p>Goal - {goal} days</p>
