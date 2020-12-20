@@ -1,5 +1,6 @@
 //export const baseUrl = 'https://challenges-board.herokuapp.com';
-export const baseUrl = 'http://localhost:8080';
+//export const baseUrl = 'http://localhost:8080';
+export const baseUrl = '';
 
 export const fetchApi = (url, options = {}) => {
   return new Promise((resolve, reject) => {
