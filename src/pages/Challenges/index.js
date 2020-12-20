@@ -65,7 +65,7 @@ const popularChallenges = [
     goal: 14,
     popularity: 487
   }
-]
+];
 
 function Challenges() {
   const [challenges, setChallenges] = useState([]);
@@ -78,7 +78,7 @@ function Challenges() {
       .map((challenge) => {
         return <ChallengeItem key={challenge.id} challenge={challenge} />;
       });
-      setChallenges(initialChallenges);
+    setChallenges(initialChallenges);
   }, []);
 
   const filterCurrent = () => {
@@ -106,7 +106,7 @@ function Challenges() {
   const filterPopular = () => {
     const filteredChallenges = popularChallenges
       .sort((prev, curr) => {
-        return prev.popularity > curr.popularity;
+        return prev.popularity < curr.popularity ? 1 : -1;
       })
       .map((challenge) => {
         return <ChallengeItem key={challenge.id} challenge={challenge} />;
@@ -124,7 +124,9 @@ function Challenges() {
         <div className='filters__option' onClick={filterArchived}>
           Archived
         </div>
-        <div className='filters__option' onClick={filterPopular}>Popular</div>
+        <div className='filters__option' onClick={filterPopular}>
+          Popular
+        </div>
       </div>
       <hr></hr>
       <div className='challenges'>{challenges}</div>
