@@ -6,6 +6,7 @@ const authRoutes = require('./server/routes/auth');
 const challengesRoutes = require('./server/routes/challenges');
 const {dbUser, dbUserPassword, dbName} = require('./server/config/database');
 const {port} = require('./server/config/config');
+var cors = require('cors');
 
 mongoose.connect(`mongodb+srv://${dbUser}:${dbUserPassword}@cluster0.lfsvz.mongodb.net/${dbName}`, {
   useCreateIndex: true,
@@ -29,6 +30,7 @@ const logMiddleware = (req, res, next) => {
 };
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const authMiddleware = require('./server/middlewares/authMiddleware');
