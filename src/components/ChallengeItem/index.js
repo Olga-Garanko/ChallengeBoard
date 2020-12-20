@@ -2,7 +2,7 @@ import './styles.scss';
 import { useState } from 'react';
 import {Link} from "react-router-dom";
 
-const ChallengeItem = ({ challenge: { id, name, startDate, goal }}) => {
+const ChallengeItem = ({ challenge: { id, title, startDate, goal }}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
@@ -12,7 +12,7 @@ const ChallengeItem = ({ challenge: { id, name, startDate, goal }}) => {
   return (
     <div className='challenge'>
       <div className='challenge__item'>
-        <Link to={`/challenge/${id}`} className='challenge__name'>{name} - {goal} days</Link>
+        <Link to={`/challenge/${id}`} className='challenge__name'>{title} - {goal} days</Link>
         <button onClick={toggleChallenge} className="challenge__btn">{!open ? '+' : '-'}</button>
       </div>
       {
