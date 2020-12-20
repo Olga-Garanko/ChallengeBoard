@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import MainLayoutRoutes from './layouts/MainLayout/routes';
 import PublicLayoutRoutes from './layouts/PublicLayout/routes';
-import PrivateRoute from './routes/PrivateRoute';
+//import PrivateRoute from './routes/PrivateRoute';
 //import PublicRoute from './routes/PublicRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -14,7 +14,7 @@ import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import Challenges from './pages/Challenges';
 import ChallengeItem from './pages/ChallengeItem';
-import EditChallengeItem from './pages/EditChallengeItem'
+import CreateChallenge from './pages/CreateChallenge'
 
 const App = () => {
   return (
@@ -38,9 +38,9 @@ const App = () => {
           <Route path="/challenge/:id">
             <MainLayoutRoutes path="/challenge/:id" component={ChallengeItem} />
           </Route>
-          <PrivateRoute path="/edit-challenge/:id?">
-            <MainLayoutRoutes path="/edit-challenge/:id?" component={EditChallengeItem} />
-          </PrivateRoute>
+          <Route path="/create-challenge">
+            <MainLayoutRoutes path="/create-challenge" component={CreateChallenge} />
+          </Route>
         </Switch>
     </Router>
   );

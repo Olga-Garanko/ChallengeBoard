@@ -16,7 +16,7 @@ const DashboardNav = () => {
       <NavLink to='/challenges' className='nav__link' activeClassName='nav__link_active'>
         My habits
       </NavLink>
-      <NavLink to='/edit-challenge' className='nav__link' activeClassName='nav__link_active'>
+      <NavLink to='/create-challenge' className='nav__link' activeClassName='nav__link_active'>
         Add new habit
       </NavLink>
       <NavLink to='/progress' className='nav__link' activeClassName='nav__link_active'>
