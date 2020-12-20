@@ -1,38 +1,42 @@
-import { useState } from 'react';
 import './styles.scss';
+import { useState } from 'react';
+import {Link} from "react-router-dom";
 
-const ChallengeItem = ({ challenge: { description, date, goal }}) => {
+const ChallengeItem = ({ challenge: { id, name, startDate, goal }}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
     setOpen(!open);
   };
 
-  if (!open) {
-    return (
-      <div className='challenge'>
-        <div className='challenge__item'>
-          <div className='challenge__item__description'>{description} - {goal} days</div>
-          <button onClick={toggleChallenge} className="challenge__item__btn">Show details</button>
-        </div>
+  return (
+    <div className='challenge'>
+      <div className='challenge__item'>
+        <Link to={`/challenge/${id}`} className='challenge__name'>{name} - {goal} days</Link>
+        <button onClick={toggleChallenge} className="challenge__btn">{!open ? '+' : '-'}</button>
       </div>
-    );
-  } else {
-    return (
-      <div className='challenge'>
-        <div className='challenge__item'>
-          <div className='challenge__item__description'>{description} - {goal} days</div>
-          <button onClick={toggleChallenge} className="challenge__item__btn">Hide details</button>
-        </div>
+      {
+        open &&
         <div className="challenge__details">
           <p>Goal - {goal} days</p>
-          <p>Today is "toBeCalculated" day of challenge</p>
-          <p>Left "toBeCalculated" days</p>
-          <p>Start Date - {date.toLocaleString()}</p>
-        </div>
-      </div>
-    );
-  }
+
+
+          {startDate && 
+          <>
+            <p>Start Date - {startDate.toLocaleString()}</p>
+            <p>Today is "toBeCalculated" day of challenge</p>
+            <p>Left "toBeCalculated" days</p>
+          </>
+          }
+          {!startDate ?
+            <button className="challenge__btn">Start</button> :
+            <button className="challenge__btn">Give up</button>
+          }
+          
+        </div>        
+      }
+    </div>
+  );
 };
 
 export default ChallengeItem;

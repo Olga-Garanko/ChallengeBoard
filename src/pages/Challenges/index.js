@@ -3,23 +3,27 @@ import './styles.scss';
 
 const testData = [
   {
-    description: 'Drink water',
-    date: new Date(2020, 11, 12),
+    id: '1',
+    name: 'Drink water',
+    startDate: new Date(2020, 11, 12),
     goal: 5
   },
   {
-    description: 'Walk with a dog',
-    date: "5.12.2020",
+    id: '2',
+    name: 'Walk with a dog',
+    startDate: null,
     goal: 16
   },
   {
-    description: 'Run 5 kilometers everyday',
-    date: "14.12.2020",
+    id: '3',
+    name: 'Run 5 kilometers everyday',
+    startDate: null,
     goal: 24
   },
   {
-    description: 'Do something else',
-    date: "2.12.2020",
+    id: '4',
+    name: 'Do something else',
+    startDate: null,
     goal: 2
   }
 ];
@@ -33,6 +37,11 @@ function Challenges() {
   return (
     <>
     <h1>Challenges</h1>
+    <ul>
+      <li>my</li>
+      <li>archive</li>
+      <li>default</li>
+    </ul>
     <div className='challenges'>
       {challenges}
     </div>

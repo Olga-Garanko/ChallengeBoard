@@ -16,10 +16,6 @@ const userSchema = mongoose.Schema({
     }
   },
   password: String,
-  firstName: String,
-  lastName: String,
-  phone: String,
-  birthday: String,
   avatar: String,
   created_date: {
     type: Date,

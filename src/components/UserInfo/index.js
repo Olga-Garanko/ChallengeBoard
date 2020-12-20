@@ -1,12 +1,13 @@
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import { baseUrl, fetchApi } from "../../utils/api";
-import { useHistory } from "react-router-dom";
-import avatar from '../../assets/images/default-avatar.png'
+//import { useHistory } from "react-router-dom";
+import avatar from '../../assets/images/default-avatar.png';
+import {Link} from "react-router-dom";
 
 const UserInfo = () => {
   const [user, setUser] = useState({});
-  const history = useHistory();
+  //const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -32,7 +33,9 @@ const UserInfo = () => {
         }
       </div>
       <div className='user__data'>
-        <div className='user__name'>{user.username}</div>
+        <Link to='/profile' className='user__name'>
+          {user.username}
+        </Link>
       </div>
     </div>
   );

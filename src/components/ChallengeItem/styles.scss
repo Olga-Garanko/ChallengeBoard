@@ -6,21 +6,21 @@
     background-color: #434343;
     padding: 20px;
     font-size: 1.3rem;
-    &__description {
-      width: 400px;
-    }
-    &__btn {
-      width: 100px;
-      height: 30px;
-      border-style: none;
-      border-radius: 5px;
-      background-color: #477eff;
-      color: #fff;
+  }
+  &__description {
+    width: 400px;
+  }
+  &__btn {
+    width: 100px;
+    height: 30px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: #477eff;
+    color: #fff;
 
-      &:hover {
-        cursor: pointer;
-        background-color: #5e8fff;
-      }
+    &:hover {
+      cursor: pointer;
+      background-color: #5e8fff;
     }
   }
   &__details {
