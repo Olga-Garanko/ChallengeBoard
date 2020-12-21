@@ -40,15 +40,15 @@ const handleBlur = (event) => {
 const onSubmit = () => {
     const token = localStorage.getItem('jwt');
     setSubmitting(true);
-    fetchApi(`${baseUrl}/api/challenges`, {
+    fetchApi(`${baseUrl}/api/v1/challenges`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
-        title: values.title,
-        goal: values.goal
+        name: values.title,
+        milestone: values.goal
     })
     })
     .then(data => {

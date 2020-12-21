@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {Link} from "react-router-dom";
 import { baseUrl, fetchApi } from "../../utils/api";
 
-const ChallengeItem = ({ challenge: { _id, title, startDate, goal, proofDate }, onChange}) => {
+const ChallengeItem = ({ challenge: { _id, name: title, startDate, milestone: goal, lastAcceptDate: proofDate }, onChange}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
