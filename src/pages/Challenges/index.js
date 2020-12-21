@@ -29,35 +29,35 @@ function Challenges() {
   const [activeTab, setActiveTab] = useState('current');
   const token = localStorage.getItem('jwt');
   const currentChallenges = () => {
-    fetchApi(`${baseUrl}/api/challenges/?status=created`, {
+    fetchApi(`${baseUrl}/api/v1/challenges?archived=false`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
       }
     })
-    .then(data => setChallenges(data.challenges))
+    .then(data => setChallenges(data))
     .catch(err => console.log(err.message));
   };
 
   const archivedChallenges = () => {
-    fetchApi(`${baseUrl}/api/challenges/?status=archived`, {
+    fetchApi(`${baseUrl}/api/v1/challenges?archived=true`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
       }
     })
-    .then(data => setChallenges(data.challenges))
+    .then(data => setChallenges(data))
     .catch(err => console.log(err.message));
   };
 
   const popularChallenges = () => {
-    fetchApi(`${baseUrl}/api/challenges/popular`, {
+    fetchApi(`${baseUrl}/api/v1/default-challenges`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
       }
     })
-    .then(data => setChallenges(data.challenges))
+    .then(result => setChallenges(result.data))
     .catch(err => console.log(err.message));
   };
 

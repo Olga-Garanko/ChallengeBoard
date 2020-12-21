@@ -20,12 +20,15 @@ const ChallengeItem = ({ challenge: { _id, title, startDate, goal, proofDate }, 
   }
   const onProof = () => {
     const token = localStorage.getItem('jwt');
-    fetchApi(`${baseUrl}/api/challenges/${_id}/proof`, {
+    fetchApi(`${baseUrl}/api/challenges/${_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
-      }
+      },
+      body: JSON.stringify({
+        proofDate: new Date()
+      })
     })
     .then(data => {
       console.log(data.message); proofDate = new Date();

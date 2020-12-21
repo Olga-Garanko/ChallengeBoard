@@ -49,7 +49,7 @@ const Registration = () => {
   const onSubmit = () => {
     console.log('onSubmit')
     setSubmitting(true);
-    fetchApi(`${baseUrl}/api/auth/register`, {
+    fetchApi(`${baseUrl}/api/v1/users/registration`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -61,23 +61,23 @@ const Registration = () => {
       })
     })
     .then(() => {
-      return fetchApi(`${baseUrl}/api/auth/login`, {
+      return fetchApi(`${baseUrl}/api/v1/users/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify({
-            email: values.email,
+            username: values.email,
             password: values.password
         })
       })
     })
     .then(data => {
-        localStorage.setItem('jwt', data.jwt_token);
-        return fetchApi(`${baseUrl}/api/users/me`, {
+        localStorage.setItem('jwt', data.jwt);
+        return fetchApi(`${baseUrl}/api/v1/users/me`, {
           headers: {
               'Content-Type': 'application/json;charset=utf-8',
-              'Authorization': `Bearer ${data.jwt_token}`
+              'Authorization': `Bearer ${data.jwt}`
           }
         })
     })

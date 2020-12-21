@@ -11,13 +11,12 @@ const UserInfo = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
-      fetchApi(`${baseUrl}/api/users/me`, {
+      fetchApi(`${baseUrl}/api/v1/users/me`, {
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
           'Authorization': `Bearer ${token}`
         }
       })
-      .then(data => setUser(data.user))
+      .then(user => setUser(user))
       .catch(() => {
         // localStorage.removeItem('jwt');
         // history.push('/');

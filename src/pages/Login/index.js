@@ -7,7 +7,7 @@ import { baseUrl, fetchApi } from "../../utils/api";
 
 const Login = () => {
   const history = useHistory();
-  const [values, setValues] = useState({email: 'user@test.ua', password: 'test1234'});
+  const [values, setValues] = useState({email: 'email3@gmail.com', password: 'DenisPass1'});
   const [errors, setErrors] = useState({email: false, password: false});
   const [submitting, setSubmitting] = useState(false);
   const [response, setResponse] = useState('');
@@ -50,18 +50,18 @@ const Login = () => {
   const onSubmit = () => {
     console.log('onSubmit')
     setSubmitting(true);
-    fetchApi(`${baseUrl}/api/auth/login`, {
+    fetchApi(`${baseUrl}/api/v1/users/login`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json;charset=utf-8'
       },
       body: JSON.stringify({
-          email: values.email,
+          username: values.email,
           password: values.password
       })
     })
     .then(async data => {
-        await localStorage.setItem('jwt', data.jwt_token);
+        await localStorage.setItem('jwt', data.jwt);
         history.push('/challenges')
     })
     .catch(err => {
