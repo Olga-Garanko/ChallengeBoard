@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {Link} from "react-router-dom";
 import { baseUrl, fetchApi } from "../../utils/api";
 
-const ChallengeItem = ({ challenge: { _id, name: title, startDate, milestone: goal, lastAcceptDate: proofDate }, onChange}) => {
+const ChallengeItem = ({ challenge: { id: _id, name: title, startDate, milestone: goal, lastAcceptDate: proofDate }, onChange}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
@@ -20,14 +20,14 @@ const ChallengeItem = ({ challenge: { _id, name: title, startDate, milestone: go
   }
   const onProof = () => {
     const token = localStorage.getItem('jwt');
-    fetchApi(`${baseUrl}/api/challenges/${_id}`, {
+    fetchApi(`${baseUrl}/api/v1/challenges/${_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        proofDate: new Date()
+        lastAcceptDate: new Date()
       })
     })
     .then(data => {
