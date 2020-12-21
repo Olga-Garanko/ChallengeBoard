@@ -2,6 +2,7 @@ import './styles.scss';
 import { useState } from 'react';
 import { baseUrl, fetchApi } from "../../utils/api";
 import cs from 'classnames';
+import {Link} from "react-router-dom";
 
 const ChallengeItem = ({
   challenge: { id, name: title, startDate, milestone: goal, status, lastAcceptDate: proofDate },
@@ -92,7 +93,7 @@ const ChallengeItem = ({
           }
           <div className='btn-group'>
             {!(Date.now() - Date.parse(proofDate) < 86400000) && (
-              <button className='challenge__btn' onClick={onProof}>
+              <button className='challenge__btn' onClick={() => onPatch('proof')}>
                 Proof
               </button>
             )}
