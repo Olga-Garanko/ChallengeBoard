@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { baseUrl, fetchApi } from "../../utils/api";
 import cs from 'classnames';
 
-const ChallengeItem = ({ challenge: { id, name: title, status, startDate, milestone: goal, lastAcceptDate: proofDate }, onChange}) => {
+const ChallengeItem = ({
+  challenge: { id, name: title, startDate, milestone: goal, status, lastAcceptDate: proofDate },
+  onChange
+}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
@@ -37,7 +40,7 @@ const ChallengeItem = ({ challenge: { id, name: title, status, startDate, milest
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(body)
     })
@@ -45,15 +48,30 @@ const ChallengeItem = ({ challenge: { id, name: title, status, startDate, milest
     .catch(err => console.log(err.message)); 
   }
 
+  const deleteChallenge = () => {
+    const token = localStorage.getItem('jwt');
+    fetchApi(`${baseUrl}/api/v1/challenges/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(() => {
+        setOpen(!open);
+        onChange();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className={cs('challenge', {'challenge_completed': status === 'FINISHED'})}>
       <div className='challenge__item' onClick={toggleChallenge}>
         <div className='challenge__name'>{title} - {goal} days</div>
         <button className="challenge__btn">{!open ? '+' : '-'}</button>
       </div>
-      {
-        open &&
-        <div className="challenge__details">
+      {open &&
+        <div className='challenge__details'>
           <p>Goal - {goal} days</p>
           {startDate && <p>Start Date - {formatDate(startDate)}</p>}
           {
@@ -72,12 +90,21 @@ const ChallengeItem = ({ challenge: { id, name: title, status, startDate, milest
             }
           </>
           }
-          {!((Date.now() - Date.parse(proofDate)) < 86400000) &&
-            <button className="challenge__btn" onClick={() => onPatch('proof')}>Proof</button>
-          }
-          <button className="challenge__btn">Give up</button>
-          
-        </div>        
+          <div className='btn-group'>
+            {!(Date.now() - Date.parse(proofDate) < 86400000) && (
+              <button className='challenge__btn' onClick={onProof}>
+                Proof
+              </button>
+            )}
+            <Link to={`/challenge/${id}`} className='details-link'>
+              Details
+            </Link>
+            <button className='challenge__btn'>Give up</button>
+            <button className='delete__btn' onClick={deleteChallenge}>
+              Delete
+            </button>
+          </div>
+        </div>
       }
     </div>
   );
