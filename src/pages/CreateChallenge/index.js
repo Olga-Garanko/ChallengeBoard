@@ -24,7 +24,7 @@ const CreateChallenge = () => {
 
   useEffect(() => {
     getPopularChallenges();
-  });
+  }, []);
 
   const validateFields = () => {
     const errors = {};

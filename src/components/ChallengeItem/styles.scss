@@ -7,6 +7,9 @@
     padding: 20px;
     font-size: 1.3rem;
   }
+  &__name:hover {
+    cursor: pointer;
+  }
   &__description {
     width: 400px;
   }
@@ -27,5 +30,39 @@
     background-color: #696969;
     font-size: 1.3rem;
     padding: 20px;
+  }
+}
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+
+  .delete__btn {
+    width: 100px;
+    height: 30px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: #ff4747;
+    color: #fff;
+    &:hover {
+      cursor: pointer;
+      background-color: #ff5e5e;
+    }
+  }
+}
+
+.details-link {
+  width: 100px;
+  height: 30px;
+  padding-left: 20px;
+  padding-top: 5px;
+  font-size: 14px;
+  border-style: none;
+  border-radius: 5px;
+  background-color: #477eff;
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #5e8fff;
   }
 }
