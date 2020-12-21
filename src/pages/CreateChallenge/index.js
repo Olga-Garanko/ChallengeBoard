@@ -34,6 +34,9 @@ const CreateChallenge = () => {
     if (values.goal === '') {
       errors.goal = 'Please enter goal';
     }
+    if (values.goal <= 0) {
+      errors.goal = 'Must be positive';
+    }
     const numberRegExp = /^[0-9]+$/i;
     if (!numberRegExp.test(values.goal)) {
       errors.goal = 'Must be a number';
