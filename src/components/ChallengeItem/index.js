@@ -14,8 +14,8 @@ const ChallengeItem = ({
   };
   const formatDate = (date) => {
     const formatedDate = new Date(date);
-    return `${formatedDate.getDate() + 1}.${formatedDate.getMonth() + 1}.${formatedDate.getFullYear()}`;
-  };
+    return `${formatedDate.getDate()}.${formatedDate.getMonth() + 1}.${formatedDate.getFullYear()}`
+  }
   const lastDays = () => {
     if (!proofDate) return;
     const days = Math.ceil((Date.now() - Date.parse(proofDate)) / 86400000);
@@ -58,7 +58,7 @@ const ChallengeItem = ({
   };
 
   return (
-    <div className='challenge'>
+    <div className={cs('challenge', {'challenge_completed': status === 'FINISHED'})}>
       <div className='challenge__item'>
         <div onClick={toggleChallenge} className='challenge__name'>
           {title} - {goal} days

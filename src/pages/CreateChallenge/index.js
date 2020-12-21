@@ -29,10 +29,14 @@ const CreateChallenge = () => {
   const validateFields = () => {
     const errors = {};
     if (values.title === '') {
-      errors.title = 'Not empty';
+      errors.title = 'Please enter title';
     }
     if (values.goal === '') {
-      errors.goal = 'Not empty';
+      errors.goal = 'Please enter goal';
+    }
+    const numberRegExp = /^[0-9]+$/i;
+    if (!numberRegExp.test(values.goal)) {
+      errors.goal = 'Must be a number';
     }
     return errors;
   };
@@ -113,7 +117,7 @@ const CreateChallenge = () => {
         </div>
         <div className='form-group'>
           <Input
-            type='number'
+            type='text'
             className='input'
             labelText='Goal (days)'
             id='goal'
@@ -130,7 +134,7 @@ const CreateChallenge = () => {
         </Button>
       </div>
       <div className='deafault-challenges'>
-          {challenges.map((challenge) => <ChallengeItem key={challenge._id} challenge={challenge} onChange={onChange} />)}
+          {challenges.map((challenge) => <ChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)}
       </div>
     </>
   );

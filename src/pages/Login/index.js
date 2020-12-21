@@ -20,21 +20,18 @@ const Login = () => {
   };
   const validateFields = () => {
     const errors = {};
-    if (values.username === "") {
-      errors.username = "Not empty";
-    } 
     if (values.email === "") {
-      errors.email = "Not empty";
+      errors.email = "Please enter email";
     }
     const emailRegExp = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i;
     if (!emailRegExp.test(values.email)) {
       errors.email = 'Must be symbol @ and 2 symbol after dot';
     }
     if (values.password === "") {
-      errors.password = "Not empty";
+      errors.password = "Please enter password";
     }
     if (values.password.length < 8) {
-      errors.password = "At least 8 symbols";
+      errors.password = "Must be at least 8 symbols";
     } 
     return errors;
   };
