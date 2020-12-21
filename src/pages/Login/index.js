@@ -48,7 +48,6 @@ const Login = () => {
   };
   
   const onSubmit = () => {
-    console.log('onSubmit')
     setSubmitting(true);
     fetchApi(`${baseUrl}/api/v1/users/login`, {
       method: 'POST',

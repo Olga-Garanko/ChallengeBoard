@@ -31,24 +31,12 @@ const App = () => {
           <Route path="/registration">
             <PublicLayoutRoutes exact path="/registration" component={Registration} />
           </Route>
-          <Route path="/profile">
-            <MainLayoutRoutes exact path="/profile" component={Profile} />
-          </Route>          
-          <Route path="/challenges">
-            <MainLayoutRoutes exact path="/challenges" component={Challenges} />
-          </Route>
-          <Route path="/challenge/:id">
-            <MainLayoutRoutes path="/challenge/:id" component={ChallengeItem} />
-          </Route>
-          <Route path="/create-challenge">
-            <MainLayoutRoutes path="/create-challenge" component={CreateChallenge} />
-          </Route>
-          <Route path="/progress">
-            <MainLayoutRoutes path="/progress" component={Progress} />
-          </Route>
-          <PrivateRoute path="/mentors">
-            <MainLayoutRoutes path="/mentors" component={Mentors} />
-          </PrivateRoute>
+          <MainLayoutRoutes exact path="/profile" component={Profile} />       
+          <MainLayoutRoutes exact path="/challenges" component={Challenges} />
+          <MainLayoutRoutes path="/challenge/:id" component={ChallengeItem} />
+          <MainLayoutRoutes path="/create-challenge" component={CreateChallenge} />
+          <MainLayoutRoutes path="/progress" component={Progress} />
+          <MainLayoutRoutes path="/mentors" component={Mentors} />
         </Switch>
     </Router>
   );
