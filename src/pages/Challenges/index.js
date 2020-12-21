@@ -1,10 +1,12 @@
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import ChallengeItem from '../../components/ChallengeItem';
+import DefaultChallengeItem from '../../components/DefaultChallengeItem';
 import { baseUrl, fetchApi } from "../../utils/api";
 
 function Challenges() {
   const [challenges, setChallenges] = useState([]);
+  const [isDefault, setIsDefault] = useState(false);
   const [activeTab, setActiveTab] = useState('current');
   const token = localStorage.getItem('jwt');
   const currentChallenges = () => {
@@ -43,10 +45,13 @@ function Challenges() {
   useEffect(() => {
     if (activeTab === 'current') {
       currentChallenges();
+      setIsDefault(false)
     } else if (activeTab === 'archived') {
       archivedChallenges();
+      setIsDefault(false)
     } else {
-      popularChallenges()
+      popularChallenges();
+      setIsDefault(true);
     }
   }, [activeTab]);
   const onChange = () => {
@@ -69,6 +74,8 @@ function Challenges() {
       </div>
       <hr></hr>
       <div className='challenges'>{
+        isDefault ?
+        challenges.map((challenge) => <DefaultChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />) :
         challenges.map((challenge) => <ChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)
       }</div>
     </>
