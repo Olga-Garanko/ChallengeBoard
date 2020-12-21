@@ -70,6 +70,9 @@ function Challenges() {
       popularChallenges()
     }
   }, [activeTab]);
+  const onChange = () => {
+    currentChallenges();
+  }
 
   return (
     <>
@@ -87,7 +90,7 @@ function Challenges() {
       </div>
       <hr></hr>
       <div className='challenges'>{
-        challenges.map((challenge) => <ChallengeItem key={challenge._id} challenge={challenge} />)
+        challenges.map((challenge) => <ChallengeItem key={challenge._id} challenge={challenge} onChange={onChange} />)
       }</div>
     </>
   );

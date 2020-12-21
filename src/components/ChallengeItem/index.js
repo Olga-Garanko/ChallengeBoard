@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {Link} from "react-router-dom";
 import { baseUrl, fetchApi } from "../../utils/api";
 
-const ChallengeItem = ({ challenge: { _id, title, startDate, goal, proofDate }}) => {
+const ChallengeItem = ({ challenge: { _id, title, startDate, goal, proofDate }, onChange}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
@@ -27,7 +27,10 @@ const ChallengeItem = ({ challenge: { _id, title, startDate, goal, proofDate }})
         'Authorization': `Bearer ${token}`
       }
     })
-    .then(data => {console.log(data.message); proofDate = new Date();})
+    .then(data => {
+      console.log(data.message); proofDate = new Date();
+      onChange();
+    })
     .catch(err => console.log(err.message)); 
   }
   return (
