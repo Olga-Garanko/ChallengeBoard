@@ -2,8 +2,9 @@ import './styles.scss';
 import { useState } from 'react';
 import {Link} from "react-router-dom";
 import { baseUrl, fetchApi } from "../../utils/api";
+import cs from 'classnames';
 
-const ChallengeItem = ({ challenge: { id: _id, name: title, startDate, milestone: goal, lastAcceptDate: proofDate }, onChange}) => {
+const ChallengeItem = ({ challenge: { id: _id, name: title, status, startDate, milestone: goal, lastAcceptDate: proofDate }, onChange}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
@@ -11,7 +12,7 @@ const ChallengeItem = ({ challenge: { id: _id, name: title, startDate, milestone
   };
   const formatDate = (date) => {
     const formatedDate = new Date(date);
-    return `${formatedDate.getDate() + 1}.${formatedDate.getMonth() + 1}.${formatedDate.getFullYear()}`
+    return `${formatedDate.getDate()}.${formatedDate.getMonth() + 1}.${formatedDate.getFullYear()}`
   }
   const lastDays = () => {
     if (!proofDate) return;
@@ -37,7 +38,7 @@ const ChallengeItem = ({ challenge: { id: _id, name: title, startDate, milestone
     .catch(err => console.log(err.message)); 
   }
   return (
-    <div className='challenge'>
+    <div className={cs('challenge', {'challenge_completed': status === 'FINISHED'})}>
       <div className='challenge__item'>
         <Link to={`/challenge/${_id}`} className='challenge__name'>{title} - {goal} days</Link>
         <button onClick={toggleChallenge} className="challenge__btn">{!open ? '+' : '-'}</button>

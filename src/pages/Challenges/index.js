@@ -3,27 +3,6 @@ import { useState, useEffect } from 'react';
 import ChallengeItem from '../../components/ChallengeItem';
 import { baseUrl, fetchApi } from "../../utils/api";
 
-const popularChallenges = [
-  {
-    id: '1',
-    title: 'Popular 1',
-    goal: 10,
-    popularity: 1105
-  },
-  {
-    id: '2',
-    title: 'Popular 2',
-    goal: 5,
-    popularity: 220
-  },
-  {
-    id: '3',
-    title: 'Popular 3',
-    goal: 14,
-    popularity: 487
-  }
-];
-
 function Challenges() {
   const [challenges, setChallenges] = useState([]);
   const [activeTab, setActiveTab] = useState('current');
@@ -90,7 +69,7 @@ function Challenges() {
       </div>
       <hr></hr>
       <div className='challenges'>{
-        challenges.map((challenge) => <ChallengeItem key={challenge._id} challenge={challenge} onChange={onChange} />)
+        challenges.map((challenge) => <ChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)
       }</div>
     </>
   );
