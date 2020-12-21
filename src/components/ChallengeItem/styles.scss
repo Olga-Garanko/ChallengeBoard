@@ -1,3 +1,4 @@
+@import '../../styles/variables.scss';
 .challenge {
   margin-bottom: 20px;
   &__item {
@@ -41,7 +42,7 @@
 
 .details-link {
   font-size: 18px;
-  color: #477eff;
+  color: var(--tone-color);
   font-weight: bold;
 }
 .challenge__header {

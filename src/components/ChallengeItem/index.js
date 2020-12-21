@@ -59,10 +59,7 @@ const ChallengeItem = ({
         Authorization: `Bearer ${token}`
       }
     })
-      .then(() => {
-        //setOpen(!open);
-        onChange();
-      })
+      .then(() => onChange())
       .catch((err) => console.log(err));
   };
 
@@ -87,6 +84,7 @@ const ChallengeItem = ({
           {startDate && <p>Start Date - {formatDate(startDate)}</p>}
           <p>Proofed {lastDays()} day</p>
           <p>Left {goal - lastDays()} days</p>
+
           {
             status !== 'STARTED' &&
             <div className="challenge__footer">
@@ -95,7 +93,6 @@ const ChallengeItem = ({
               <div className={cs('status', {'success': status === 'SUCCESS', 'failed': status === 'FAILED'})}>{status}</div>
             </div>
           }
-
 
           {status === 'STARTED' &&
             <div className='challenge__buttons'>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ChallengeItem from '../../components/ChallengeItem';
 import DefaultChallengeItem from '../../components/DefaultChallengeItem';
 import { baseUrl, fetchApi } from "../../utils/api";
+import cs from 'classnames';
 
 function Challenges() {
   const [challenges, setChallenges] = useState([]);
@@ -55,6 +56,7 @@ function Challenges() {
     }
   }, [activeTab]);
   const onChange = () => {
+    setActiveTab('current');
     currentChallenges();
   }
 
@@ -62,13 +64,13 @@ function Challenges() {
     <>
       <h1>Challenges</h1>
       <div className='filters'>
-        <div className='filters__option' onClick={() => setActiveTab('current')}>
+        <div className={cs('filters__option', {'active': activeTab === 'current'})} onClick={() => setActiveTab('current')}>
           Current
         </div>
-        <div className='filters__option' onClick={() => setActiveTab('archived')}>
+        <div className={cs('filters__option', {'active': activeTab === 'archived'})} onClick={() => setActiveTab('archived')}>
           Archived
         </div>
-        <div className='filters__option' onClick={() => setActiveTab('popular')}>
+        <div className={cs('filters__option', {'active': activeTab === 'popular'})} onClick={() => setActiveTab('popular')}>
           Popular
         </div>
       </div>
