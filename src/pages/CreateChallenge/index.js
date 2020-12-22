@@ -40,7 +40,7 @@ const CreateChallenge = () => {
     if (values.goal > 999) {
       errors.goal = 'Too long goal';
     }
-    const numberRegExp = /^[\-0-9]+$/i;
+    const numberRegExp = /^[-0-9]+$/i;
     if (!numberRegExp.test(values.goal)) {
       errors.goal = 'Must be a number';
     }
