@@ -23,7 +23,7 @@ function Challenges() {
   };
 
   const popularChallenges = () => {
-    fetchApi(`${baseUrl}/api/v1/default-challenges`, {
+    fetchApi(`${baseUrl}/api/v1/default-challenges?sort=popularity,desc`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`

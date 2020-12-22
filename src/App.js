@@ -17,8 +17,14 @@ import ChallengeItem from './pages/ChallengeItem';
 import CreateChallenge from './pages/CreateChallenge';
 import Mentors from './pages/Mentors';
 import Progress from './pages/Progress';
+import { useEffect } from 'react';
 
 const App = () => {
+
+  useEffect(() => {
+    document.title = 'ChallengeOn'
+  }, []);
+
   return (
     <Router>
       <Switch>

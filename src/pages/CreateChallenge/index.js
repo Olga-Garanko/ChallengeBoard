@@ -34,10 +34,13 @@ const CreateChallenge = () => {
     if (values.goal === '') {
       errors.goal = 'Please enter goal';
     }
-    if (values.goal <= 0) {
+    if (Number(values.goal) <= 0) {
       errors.goal = 'Must be positive';
     }
-    const numberRegExp = /^[0-9]+$/i;
+    if (values.goal > 999) {
+      errors.goal = 'Too long goal';
+    }
+    const numberRegExp = /^[\-0-9]+$/i;
     if (!numberRegExp.test(values.goal)) {
       errors.goal = 'Must be a number';
     }
@@ -53,7 +56,7 @@ const CreateChallenge = () => {
   };
 
   const getPopularChallenges = () => {
-    fetchApi(`${baseUrl}/api/v1/default-challenges`, {
+    fetchApi(`${baseUrl}/api/v1/default-challenges?sort=popularity,desc`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
