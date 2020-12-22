@@ -78,7 +78,6 @@ const CreateChallenge = () => {
       })
     })
       .then((data) => {
-        console.log(data);
         history.push('/challenges');
       })
       .catch((err) => {
@@ -97,6 +96,10 @@ const CreateChallenge = () => {
       onSubmit();
     }
   };
+
+  const onItemChange = () => {
+    history.push('/challenges');
+  }
 
   const { title, goal } = values;
   return (
@@ -138,7 +141,7 @@ const CreateChallenge = () => {
       </div>
       <div className="search">Search</div>
       <div className='deafault-challenges'>
-          {challenges.map((challenge) => <DefaultChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)}
+          {challenges.map((challenge) => <DefaultChallengeItem key={challenge.id} challenge={challenge} onItemChange={onItemChange} />)}
       </div>
     </>
   );

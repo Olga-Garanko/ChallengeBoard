@@ -78,6 +78,20 @@ h3 {
 	font-size: 18px;
 	font-style: italic;
 	font-family: var(--title-font);
+    color: var(--bg-color-rgb);
+    &__label {
+        padding-right: 20px;
+    }
+}
+.theme-is-white .input {
+	border: 0 none;
+	border-bottom: 1px solid rgba(var(--tone-color-rgb), 0.2);
+	background: none;
+	padding-bottom: 12px;
+	margin-bottom: 40px;
+	font-size: 18px;
+	font-style: italic;
+	font-family: var(--title-font);
     color: rgba(var(--bg-color-rgb), 0.5);
     &__label {
         padding-right: 20px;
