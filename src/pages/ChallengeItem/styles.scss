@@ -1,3 +1,17 @@
-body {
-    color: black;
+.days-container {
+    width: 360px;
+    display: flex;
+    flex-wrap: wrap;
+    .day-item {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgb(79, 163, 248);
+        text-align: center;
+        padding-top: 15px;
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(26, 141, 255);
+        }
+    }
 }
