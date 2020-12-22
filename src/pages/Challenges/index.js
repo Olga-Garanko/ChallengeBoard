@@ -10,19 +10,9 @@ function Challenges() {
   const [isDefault, setIsDefault] = useState(false);
   const [activeTab, setActiveTab] = useState('current');
   const token = localStorage.getItem('jwt');
-  const currentChallenges = () => {
-    fetchApi(`${baseUrl}/api/v1/challenges?archived=false`, {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(data => setChallenges(data))
-    .catch(err => console.log(err.message));
-  };
 
-  const archivedChallenges = () => {
-    fetchApi(`${baseUrl}/api/v1/challenges?archived=true`, {
+  const customChallenges = (archived) => {
+    fetchApi(`${baseUrl}/api/v1/challenges?archived=${archived}`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
@@ -45,24 +35,26 @@ function Challenges() {
 
   useEffect(() => {
     if (activeTab === 'current') {
-      currentChallenges();
+      customChallenges(false);
       setIsDefault(false)
     } else if (activeTab === 'archived') {
-      archivedChallenges();
+      customChallenges(true);
       setIsDefault(false)
     } else {
       popularChallenges();
       setIsDefault(true);
     }
   }, [activeTab]);
-  const onChange = () => {
+
+  const onItemChange = () => {
     setActiveTab('current');
-    currentChallenges();
+    customChallenges(false);
   }
 
   return (
     <>
       <h1>Challenges</h1>
+      <div className="search">Search</div>
       <div className='filters'>
         <div className={cs('filters__option', {'active': activeTab === 'current'})} onClick={() => setActiveTab('current')}>
           Current
@@ -77,8 +69,8 @@ function Challenges() {
       <hr></hr>
       <div className='challenges'>{
         isDefault ?
-        challenges.map((challenge) => <DefaultChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />) :
-        challenges.map((challenge) => <ChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)
+        challenges.map((challenge) => <DefaultChallengeItem key={challenge.id} challenge={challenge} onItemChange={onItemChange} />) :
+        challenges.map((challenge) => <ChallengeItem key={challenge.id} challenge={challenge} onItemChange={onItemChange} />)
       }</div>
     </>
   );

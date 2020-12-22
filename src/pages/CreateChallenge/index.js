@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
-import ChallengeItem from '../../components/ChallengeItem'
+import DefaultChallengeItem from '../../components/DefaultChallengeItem';
 import { baseUrl, fetchApi } from '../../utils/api';
 
 const CreateChallenge = () => {
@@ -136,8 +136,9 @@ const CreateChallenge = () => {
           Submit
         </Button>
       </div>
+      <div className="search">Search</div>
       <div className='deafault-challenges'>
-          {challenges.map((challenge) => <ChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)}
+          {challenges.map((challenge) => <DefaultChallengeItem key={challenge.id} challenge={challenge} onChange={onChange} />)}
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const ChallengeItem = ({
   challenge: { id, name: title, startDate, milestone: goal, status, lastAcceptDate: proofDate, archived },
-  onChange
+  onItemChange
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -21,8 +21,14 @@ const ChallengeItem = ({
 
   const lastDays = () => {
     if (!proofDate) return;
-    const days = Math.floor((Date.now() - Date.parse(proofDate))/86400000);
+    let days = Math.floor((Date.now() - Date.parse(proofDate))/86400000);
     return days
+  }
+
+  const isProofButton = () => {
+    const today = new Date().getDay();
+    const proofDay = new Date(proofDate).getDay();
+    return today !== proofDay ? true : false;
   }
   
   const onPatch = (type) => {
@@ -46,7 +52,7 @@ const ChallengeItem = ({
       },
       body: JSON.stringify(body)
     })
-    .then(() => onChange())
+    .then(() => onItemChange())
     .catch(err => console.log(err.message)); 
   }
 
@@ -59,7 +65,7 @@ const ChallengeItem = ({
         Authorization: `Bearer ${token}`
       }
     })
-      .then(() => onChange())
+      .then(() => onItemChange())
       .catch((err) => console.log(err));
   };
 
@@ -96,7 +102,7 @@ const ChallengeItem = ({
 
           {status === 'STARTED' &&
             <div className='challenge__buttons'>
-              {!(Date.now() - Date.parse(proofDate) < 86400000) && (
+              {isProofButton() && (
                 <button className='challenge__btn' onClick={() => onPatch('proof')}>Proof</button>
               )}
               <button className='challenge__btn' onClick={() => onPatch('fail')}>Give up</button>              

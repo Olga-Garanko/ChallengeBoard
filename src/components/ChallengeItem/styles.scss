@@ -33,11 +33,14 @@
     padding: 20px;
   }
 }
+.challenge__buttons {
+  .challenge__btn {
+    margin-right: 10px;
+  }
+}
 .btn-group {
   display: flex;
   justify-content: space-around;
-
-
 }
 
 .details-link {

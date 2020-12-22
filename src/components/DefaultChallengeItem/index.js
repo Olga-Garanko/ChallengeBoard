@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { baseUrl, fetchApi } from '../../utils/api';
 
 const DefaultChallengeItem = ({
-  challenge: { id, name, milestone, popularity }, onChange}) => {
+  challenge: { id, name, milestone, popularity }, onItemChange}) => {
   const [open, setOpen] = useState(false);
 
   const toggleChallenge = () => {
@@ -19,7 +19,7 @@ const DefaultChallengeItem = ({
         Authorization: `Bearer ${token}`
       }
     })
-      .then(() => onChange())
+      .then(() => onItemChange())
       .catch((err) => console.log(err.message));
   };
 

@@ -5,7 +5,7 @@ import {
 
 const PublicLayout = ({children}) => {
     return (
-      <div className="public-layout">
+      <div className="public-layout theme-is-white">
         <main className="main">
           <header className="header">
             <Link to='/' className="logo">ChallengeOn</Link>

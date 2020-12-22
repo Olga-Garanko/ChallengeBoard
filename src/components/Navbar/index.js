@@ -16,7 +16,7 @@ const DashboardNav = () => {
         My challenges
       </NavLink>
       <NavLink to='/create-challenge' className='nav__link' activeClassName='nav__link_active'>
-        Add new challenge
+        New challenge
       </NavLink>
       <NavLink to='/progress' className='nav__link' activeClassName='nav__link_active'>
         My progress
