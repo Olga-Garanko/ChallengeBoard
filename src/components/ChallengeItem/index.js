@@ -21,7 +21,12 @@ const ChallengeItem = ({
 
   const lastDays = () => {
     if (!proofDate) return;
-    let days = Math.floor((Date.now() - Date.parse(proofDate))/86400000);
+    let days;
+    if (new Date(startDate).getDay() === new Date(proofDate).getDay()) {
+      days = Math.floor((Date.now() - Date.parse(proofDate))/86400000);
+    } else {
+      days = Math.ceil((Date.now() - Date.parse(proofDate))/86400000);
+    }
     return days
   }
 
@@ -82,7 +87,7 @@ const ChallengeItem = ({
       {open &&
         <div className='challenge__details'>
           <div className="challenge__header">
-            <Link to={`/challenge/${id}`} className='details-link'>Details</Link>
+            <Link to={`/challenge/${id}`} className='challenge__link'>Details</Link>
             <button className='delete' onClick={deleteChallenge}>x</button>            
           </div>
 
@@ -102,9 +107,9 @@ const ChallengeItem = ({
 
           {status === 'STARTED' &&
             <div className='challenge__buttons'>
-              {isProofButton() && (
-                <button className='challenge__btn' onClick={() => onPatch('proof')}>Proof</button>
-              )}
+              {isProofButton() &&
+              <button className='challenge__btn' onClick={() => onPatch('proof')}>Proof</button>
+              }
               <button className='challenge__btn' onClick={() => onPatch('fail')}>Give up</button>              
             </div>
           }

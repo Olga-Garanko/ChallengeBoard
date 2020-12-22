@@ -7,15 +7,21 @@
     background-color: #434343;
     padding: 20px;
     font-size: 1.3rem;
+  
   }
-  &__name:hover {
-    cursor: pointer;
+  &__name {
+    flex-grow: 1;
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }    
   }
+
   &__description {
     width: 400px;
   }
   &__btn {
-    width: 100px;
+    flex: 0 0 100px;
     height: 30px;
     border-style: none;
     border-radius: 5px;
@@ -43,10 +49,11 @@
   justify-content: space-around;
 }
 
-.details-link {
+.challenge__link {
   font-size: 18px;
-  color: var(--tone-color);
+  color: rgba(var(--txt-color-rgb), 0.7);
   font-weight: bold;
+  text-decoration: underline;
 }
 .challenge__header {
   display: flex;
