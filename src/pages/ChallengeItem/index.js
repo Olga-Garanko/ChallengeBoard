@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import './styles.scss';
+import { useEffect, useState } from 'react';
 import { baseUrl, fetchApi } from '../../utils/api';
 
 function ChallengeItem(props) {
