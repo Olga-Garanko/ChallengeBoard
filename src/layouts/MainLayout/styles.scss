@@ -1,3 +1,4 @@
+@import '../../styles/variables.scss';
 .main-layout {
   .wrapper {
     display: flex;
@@ -13,7 +14,19 @@
     min-height: 100vh;
     background-color: #151515;
   }
-
+@media ($tablet) {
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #content {
+    padding: 0 20px;
+  }
+  .aside {
+    flex: 1 0 100%;
+    min-height: auto;
+  }
+}
   .dashboard {
     width: 100%;
     background-color: #262626;

@@ -89,7 +89,7 @@ const CreateChallenge = () => {
       .finally(() => setSubmitting(false));
   };
 
-  const onLogin = () => {
+  const onPreSubmit = () => {
     console.log(values, errors);
     setResponse('');
     const newErrors = validateFields();
@@ -138,7 +138,7 @@ const CreateChallenge = () => {
           />
           {errors.goal && <div className='invalid-feedback'>{errors.goal}</div>}
         </div>
-        <Button type='button' className='btn' onClick={onLogin} disabled={submitting}>
+        <Button type='button' className='btn' onClick={onPreSubmit} disabled={submitting}>
           Submit
         </Button>
       </div>
