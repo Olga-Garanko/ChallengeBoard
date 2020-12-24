@@ -46,6 +46,12 @@ const ChallengeItem = ({
       case 'fail':
         body = {status: 'FAILED'}  
         break;
+      case 'proof':
+        const days = Math.ceil((Date.now() - Date.parse(startDate))/86400000);
+        if (days >= goal) {
+          body = {status: 'DONE', lastAcceptDate: new Date()} 
+        } else { body = {lastAcceptDate: new Date()} }
+        break;
       default:
           body = {lastAcceptDate: new Date()}
     }
@@ -79,7 +85,7 @@ const ChallengeItem = ({
   }
 
   return (
-    <div className={cs('challenge', {'challenge_completed': status === 'FINISHED', 'challenge_failed': status === 'FAILED'})}>
+    <div className={cs('challenge', {'challenge_completed': status === 'DONE', 'challenge_failed': status === 'FAILED'})}>
       <div className='challenge__item' onClick={toggleChallenge}>
         <div className='challenge__name'>{title} - {goal} days</div>
         <button className="challenge__btn">{!open ? '+' : '-'}</button>
@@ -93,7 +99,7 @@ const ChallengeItem = ({
 
           <p>Goal - {goal} days</p>
           {startDate && <p>Start Date - {formatDate(startDate)}</p>}
-          <p>Proofed {lastDays()} day</p>
+          <p>Proofed {lastDays()} days</p>
           <p>Left {goal - lastDays()} days</p>
 
           {
@@ -101,7 +107,7 @@ const ChallengeItem = ({
             <div className="challenge__footer">
               {!archived && <button className="challenge__btn" onClick={() => onPatch('archive')}>Archivate</button>}
               {archived && <button className="challenge__btn" onClick={onStart}>Start</button>}
-              <div className={cs('status', {'success': status === 'SUCCESS', 'failed': status === 'FAILED'})}>{status}</div>
+              <div className={cs('status', {'success': status === 'DONE', 'failed': status === 'FAILED'})}>{status}</div>
             </div>
           }
 
